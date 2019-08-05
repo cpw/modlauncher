@@ -38,7 +38,7 @@ public class MockLauncherHandlerService implements ILaunchHandlerService {
     }
 
     @Override
-    public Callable<Void> launchService(String[] arguments, ITransformingClassLoader launchClassLoader) {
+    public <L extends ClassLoader & ITransformingClassLoader> Callable<Void> launchService(String[] arguments, L launchClassLoader) {
         return () -> null;
     }
 }

@@ -28,5 +28,5 @@ public interface ILaunchHandlerService {
 
     void configureTransformationClassLoader(final ITransformingClassLoaderBuilder builder);
 
-    Callable<Void> launchService(String[] arguments, ITransformingClassLoader launchClassLoader);
+    <L extends ClassLoader & ITransformingClassLoader> Callable<Void> launchService(String[] arguments, L launchClassLoader);
 }

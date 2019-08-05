@@ -45,7 +45,8 @@ class LaunchServiceHandler {
     public Optional<ILaunchHandlerService> findLaunchHandler(final String name) {
         return Optional.ofNullable(launchHandlerLookup.getOrDefault(name, null)).map(LaunchServiceHandlerDecorator::getService);
     }
-    private void launch(String target, String[] arguments, ITransformingClassLoader classLoader) {
+
+    private <L extends ClassLoader & ITransformingClassLoader> void launch(String target, String[] arguments, L classLoader) {
         LOGGER.info(MODLAUNCHER, "Launching target '{}' with arguments {}", target, hideAccessToken(arguments));
         launchHandlerLookup.get(target).launch(arguments, classLoader);
     }
